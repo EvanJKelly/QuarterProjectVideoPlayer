@@ -48,12 +48,8 @@
                 display: none;
             }
             /***HAMBURGER MENU CSS*/
-        <!doctype html >
-        <html >
-        <head >
-        <meta charset="utf-8" >
-        <title > PURE CSS SIDEBAR TOGGLE MENU Demo</title >
-        <style >
+        
+       
         html, body {
             overflow-x: hidden;
             height: 100%;
@@ -220,7 +216,7 @@
         <div class="spinner horizontal"></div>
         <div class="spinner diagonal part-2"></div>
     </label>
-    <div id="sidebarMenu">
+    <div id="sidebarMenu"  >
         <ul class="sidebarMenuInner">
             <li>Soar </li>
             <li><a href="" target="_blank">My Account</a></li>
@@ -230,12 +226,9 @@
         </ul>
     </div>
     
-</body>
-</html>
-</style>
-    </head>
 
-<body>
+
+
 
 
 
@@ -244,15 +237,17 @@
         <h2 style="color: deepskyblue" > Search a video or two and enjoy!</h2>
 
     </div>
-    <video id='my-video' class='video-js' controls preload='auto' width='250' height='150'
-           poster='MY_VIDEO_POSTER.jpg' data-setup='{}'>
-        <source src='SampleVideos/SampleVideo' type='video/mp4'>
-        <source src='MY_VIDEO.webm' type='video/webm'>
-        <p class='vjs-no-js'>
-            To view this video please enable JavaScript, and consider upgrading to a web browser that
-            <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
-        </p>
-    </video>
+    <div style="position:absolute; z-index:-1">
+        <video id='my-video' class='video-js' controls preload='auto' width='250' height='150'
+               poster='MY_VIDEO_POSTER.jpg' data-setup='{}'>
+            <source src='SampleVideos/SampleVideo' type='video/mp4'>
+            <source src='MY_VIDEO.webm' type='video/webm'>
+            <p class='vjs-no-js'>
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
+            </p>
+        </video>
+   </div>
 
     <script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
 
