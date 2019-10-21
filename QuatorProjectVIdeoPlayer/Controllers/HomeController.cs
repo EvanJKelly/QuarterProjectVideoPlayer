@@ -37,6 +37,19 @@ namespace QuatorProjectVIdeoPlayer.Controllers
             return View();
         }
 
+        public IActionResult Account()
+        {
+            return View();
+        }
+        public IActionResult MyVideos()
+        {
+            return View();
+        }
+        public IActionResult AccountSettings()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

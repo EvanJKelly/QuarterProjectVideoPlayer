@@ -18,4 +18,8 @@
     <Folder Include="Videolayout\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\SampleVideos\SampleVideo.mp4" />
+  </ItemGroup>
+
 </Project>
