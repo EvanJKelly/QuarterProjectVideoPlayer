@@ -20,7 +20,7 @@ namespace QuatorProjectVIdeoPlayer.Controllers
 
         public IActionResult Index()
         {
-            return View();wasdw
+            return View();
         }
 
         public IActionResult Privacy()
