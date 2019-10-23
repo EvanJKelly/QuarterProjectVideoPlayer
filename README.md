@@ -3,7 +3,7 @@
 Prerequisites include:
 
 1. Windows 7 or above
-2. Visual Studio 2018 or above
+2. Visual Studio 2017 or above
 
 Project Information
 
