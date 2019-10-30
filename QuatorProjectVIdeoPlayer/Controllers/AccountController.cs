@@ -36,6 +36,12 @@ namespace QuatorProjectVIdeoPlayer.Controllers
                     ModelState.AddModelError(string.Empty, "Email address is taken");
                 }
 
+                if (AccountDb.IsUsernameTaken(a.Username))
+                {
+                    isEmailAndUsernameAvailable = false;
+                    ModelState.AddModelError(string.Empty, "Username is taken");
+                }
+
                 if (!isEmailAndUsernameAvailable)
                 {
                     return View(a);

@@ -60,10 +60,44 @@ namespace QuatorProjectVIdeoPlayer.Data
                 {
                     a.Email = reader["Email"].ToString();
                 }
+                reader.Close();
                 con.Dispose();
             }
 
             if (a.Email == email)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool IsUsernameTaken(string username)
+        {
+            Account a = new Account();
+            SqlConnection con = DBHelper.GetConnection();
+
+            SqlCommand addCmd = new SqlCommand();
+            addCmd.Connection = con;
+            addCmd.CommandText = "SELECT Username " +
+                "FROM Account " +
+                "WHERE Username = @username";
+            addCmd.Parameters.AddWithValue("@username", username);
+
+            con.Open();
+            using (SqlDataReader reader = addCmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    a.Username = reader["Username"].ToString();
+                }
+                reader.Close();
+                con.Dispose();
+            }
+
+            if (a.Username == username)
             {
                 return true;
             }
