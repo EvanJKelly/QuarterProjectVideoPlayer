@@ -48,9 +48,9 @@ namespace QuatorProjectVIdeoPlayer.Data
 
             SqlCommand addCmd = new SqlCommand();
             addCmd.Connection = con;
-            addCmd.CommandText = "SELECT Email" +
-                "FROM Account" +
-                "WHERE Email == @email";
+            addCmd.CommandText = "SELECT Email " +
+                "FROM Account " +
+                "WHERE Email = @email";
             addCmd.Parameters.AddWithValue("@email", email);
 
             con.Open();
@@ -98,8 +98,15 @@ namespace QuatorProjectVIdeoPlayer.Data
             }
             reader.Close();
             con.Dispose();
-
-            return a;
+            
+            if(a.Username != null && a.Password != null)
+            {
+                return a;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
