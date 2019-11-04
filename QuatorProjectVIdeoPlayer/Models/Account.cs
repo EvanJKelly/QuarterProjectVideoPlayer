@@ -22,6 +22,7 @@ namespace QuatorProjectVIdeoPlayer.Models
         [Required]
         [StringLength(50)]
         [Display(Name = "Email address")]
+        [EmailAddress(ErrorMessage = "That doesn't look like an email")]
         public string Email { get; set; }
 
         /// <summary>
