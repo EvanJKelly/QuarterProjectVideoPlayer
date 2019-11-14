@@ -43,40 +43,43 @@
             </ul>
         </div>
 
-    <div class="topnav" id="myTopnav">
-        <a class="active" asp-controller="Home" asp-action="Index">Home</a>
-        <a asp-controller="Home" asp-action="Contact">Contact</a>
-        <a asp-controller="Home" asp-action="Privacy">Privacy</a>
-        <a asp-controller="Home" asp-action="About">About</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - QuartorProjectVideoPlayer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="topnav" id="myTopnav">
+            <a class="active" asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="Home" asp-action="Contact">Contact</a>
+            <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a asp-controller="Home" asp-action="About">About</a>
+            @if (SessionHelper.IsLoggedIn(sessionData))
+            {
+                <a asp-controller="Account" asp-action="Logout">Logout</a>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Register">Register</a>
+                <a asp-controller="Account" asp-action="Login">Login</a>
+            }
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
 
-
-    
-    
-
-
-</body>
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2019 - QuartorProjectVideoPlayer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
 </html>

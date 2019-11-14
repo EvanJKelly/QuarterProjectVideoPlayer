@@ -17,30 +17,17 @@
     <div style="position:absolute; z-index:-1; margin-left:50px;">
        
 
-
-        </div>
-        <video id="my-player"
-               class="video-js"
-               controls
-               preload="auto"
-               poster="~/SampleVideos/shrek.jfif"
-               data-setup='{}' width="235" height="150">
-            <source src="~/SampleVideos/SampleVideo.mp4" type="video/mp4"></source>
-            <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
-            <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
-            <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a
-                web browser that
-                <a href="http://videojs.com/html5-video-support/" target="_blank">
-                    supports HTML5 video
-                </a>
-            </p>
         </video>
         <script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
-    
+    </div>
+
+</body>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p>@TempData["Message"]</p>
 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
+}
 
-
-   
