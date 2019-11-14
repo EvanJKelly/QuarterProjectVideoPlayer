@@ -13,9 +13,19 @@
         <h1 style="color: deepskyblue" class="display-4">Welcome to our Video Player Site!</h1>
         <h2 style="color: deepskyblue" > Search a video or two and enjoy!</h2>
         </div>
-    <a asp-controller="Video" asp-action="VideoViewer">
-        <img src=""/>
-    </a>
+    <div style="position:absolute; z-index:-1; margin-left:50px;">
+        <video id='SampleVideos/SampleVideo.mp4' class='video-js' controls preload='auto' width='250' height='150'
+               poster='SampleVideos/shrek.jfif' data-setup='{}'>
+            <source src='SampleVideos/SampleVideo.mp4' type='video/mp4'>
+            <source src='SampleVideos/SampleVideo.webm' type='SampleVideo/webm'>
+            <p class='vjs-no-js'>
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
+            </p>
+
+        </video>
+        <script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
+    </div>
 
     </body>
 @if (TempData["Message"] != null)
