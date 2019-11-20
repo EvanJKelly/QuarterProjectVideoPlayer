@@ -2,26 +2,18 @@
     ViewData["Title"] = "Home Page";
 }
 
-
-
-
-
-    
-        <div class="text-center">
-            <h1 style="color: deepskyblue" class="display-4">Welcome to our Video Player Site!</h1>
-            <h2 style="color: deepskyblue;"> Search a video or two and enjoy!</h2>
-
-    
-    
-    
-    
+<body>
+    <div class="text-center">
+        <h1 style="color: deepskyblue" class="display-4">Welcome to our Video Player Site!</h1>
+        <h2 style="color: deepskyblue" > Search a video or two and enjoy!</h2>
+    </div>
+    <a asp-controller="Video" asp-action="VideoViewer">
+        <img src="SampleVideos/shrek.jfif"/>
+    </a>
     <div style="position:absolute; z-index:-1; margin-left:50px;">
-       
-
-        </video>
         <script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
     </div>
-
+</body>
 
 @if (TempData["Message"] != null)
 {
