@@ -21,5 +21,11 @@ namespace QuatorProjectVIdeoPlayer.Controllers
 
             return View(video);
         }
+
+        [HttpGet]
+        public IActionResult uploadVideo()
+        {
+            return View();
+        }
     }
 }

@@ -1,11 +1,27 @@
 ﻿@{
     ViewData["Title"] = "Account Page";
 }
+<style>
+    h1{
+        margin-left: 41.5%;
+        float: left;
+    }
 
+    #upload{
+        margin-left: 34.5%;
+    }
 
+    .temporary{
+        text-align:center;
+        margin-top: 25px;
+    }
+</style>
+  
 <body>
 
-    <h1>My Videos Info will go here</h1>
+    <h1>My Videos</h1>
     
-   
+    <a asp-controller="Video" asp-action="uploadVideo"><button class="btn btn-primary" id="upload" >Upload</button></aasp-controller="Video"> </a>
+
+    <p class="temporary">Your videos will go here</p>
 </body>
