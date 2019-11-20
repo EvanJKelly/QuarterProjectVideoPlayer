@@ -34,7 +34,7 @@ header {
         color: white;
     }
 
-/* Hide the link that should open and close the topnav on small screens */
+/* hamburger menu */
 .topnav .icon {
     display: none;
 }
@@ -48,6 +48,8 @@ html, body {
     overflow-x: hidden;
     height: 100%;
     margin-left: 0px;
+  
+   
 }
 
 body {
@@ -57,6 +59,7 @@ body {
     margin: 0;
     font-family: 'Varela Round', sans-serif;
     padding-top: 0px;
+    
 }
 
 
@@ -66,6 +69,7 @@ body {
     height: 100%;
     margin-top: 60px;
     margin-top: 50px;
+   
 }
 
 .mainInner {
@@ -141,7 +145,7 @@ input[type=checkbox] {
     box-sizing: border-box;
     cursor: pointer;
     position: absolute;
-    z-index: 99;
+    z-index: 99999;
     height: 100%;
     width: 100%;
     top: 22px;
