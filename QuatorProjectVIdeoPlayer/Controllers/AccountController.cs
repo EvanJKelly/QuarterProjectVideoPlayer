@@ -90,5 +90,10 @@ namespace QuatorProjectVIdeoPlayer.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult AccountSettings()
+        {
+            return View();
+        }
+
     }
 }
