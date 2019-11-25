@@ -90,10 +90,18 @@ namespace QuatorProjectVIdeoPlayer.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
         public IActionResult AccountSettings()
         {
-            return View();
+            if (SessionHelper.IsLoggedIn(_httpAccessor))
+            {
+                return View();
+            }
+            else
+            {
+                TempData["Message"] = "You must be logged in to change settings";
+                return RedirectToAction("Index", "Home");
+            }
         }
-
     }
 }
