@@ -103,5 +103,19 @@ namespace QuatorProjectVIdeoPlayer.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        [HttpPost]
+        public IActionResult AccountSettings(Account a)
+        {
+            var darkModeCheckBox = Request.Form["darkModeCheckBox"].ToString();
+            if(darkModeCheckBox == "on")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
 }
