@@ -126,7 +126,10 @@ namespace QuatorProjectVIdeoPlayer.Data
             {
                 while (reader.Read())
                 {
-                    a.Username = reader["Email"].ToString();
+                    a.AccountId = Convert.ToInt32(reader["AccountId"]);
+                    a.Username = reader["Username"].ToString();
+                    a.DarkMode = Convert.ToBoolean(reader["DarkMode"]);
+                    a.Email = reader["Email"].ToString();
                     a.Password = reader["Password"].ToString();
                 }
             }
@@ -140,6 +143,59 @@ namespace QuatorProjectVIdeoPlayer.Data
             else
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Switches the boolean value of darkmode in the database
+        /// </summary>
+        public static void SwitchDarkMode(bool onOrOff, int? memberId) 
+        {
+            if (onOrOff)
+            {
+                //darkmode on
+                SqlConnection con = DBHelper.GetConnection();
+
+                SqlCommand addCmd = new SqlCommand();
+                addCmd.Connection = con;
+                addCmd.CommandText = "UPDATE Account " +
+                    "SET DarkMode = @value " +
+                    "WHERE AccountId = @id";
+                addCmd.Parameters.AddWithValue("@value", 1);
+                addCmd.Parameters.AddWithValue("@id", memberId);
+
+                try
+                {
+                    con.Open();
+                    addCmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+            }
+            else
+            {
+                //darkmode off
+                SqlConnection con = DBHelper.GetConnection();
+
+                SqlCommand addCmd = new SqlCommand();
+                addCmd.Connection = con;
+                addCmd.CommandText = "UPDATE Account " +
+                    "SET DarkMode = @value " +
+                    "WHERE AccountId = @id";
+                addCmd.Parameters.AddWithValue("@value", 0);
+                addCmd.Parameters.AddWithValue("@id", memberId);
+
+                try
+                {
+                    con.Open();
+                    addCmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    con.Dispose();
+                }
             }
         }
     }

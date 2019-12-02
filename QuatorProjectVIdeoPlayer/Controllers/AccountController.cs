@@ -107,14 +107,17 @@ namespace QuatorProjectVIdeoPlayer.Controllers
         [HttpPost]
         public IActionResult AccountSettings(Account a)
         {
+            int? memberId = SessionHelper.WhosLoggedIn(_httpAccessor);
             var darkModeCheckBox = Request.Form["darkModeCheckBox"].ToString();
             if(darkModeCheckBox == "on")
             {
+                AccountDb.SwitchDarkMode(true, memberId);
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                return View();
+                AccountDb.SwitchDarkMode(false, memberId);
+                return RedirectToAction("Index", "Home");
             }
         }
     }
