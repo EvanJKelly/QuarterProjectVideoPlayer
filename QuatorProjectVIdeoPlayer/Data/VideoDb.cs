@@ -1,9 +1,18 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.Azure;
+using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using QuatorProjectVIdeoPlayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Mvc.Filters;
+
 
 namespace QuatorProjectVIdeoPlayer.Data
 {
@@ -43,5 +52,37 @@ namespace QuatorProjectVIdeoPlayer.Data
                 return null;
             }
         }
+            public static async Task UploadFileToContainerAsync()
+        {
+
+            string storageConnection = CloudConfigurationManager.GetSetting("BlobStorageConnectionString"); 
+            CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(storageConnection);
+
+            //create a block blob 
+            CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+
+            //create a container 
+            CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("videosandthumbnails");
+
+            //create a container if it is not already exists
+
+            if (await cloudBlobContainer.CreateIfNotExistsAsync())
+            {
+
+                await cloudBlobContainer.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+
+            }
+
+            Video video = new Video();
+           /// string imageName =  video.VideoTitle + Path.GetExtension(video.VideoId);
+
+            //get Blob reference
+
+            ///CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName); cloudBlockBlob.Properties.ContentType = video.VideoId;
+
+           /// await cloudBlockBlob.UploadFromStreamAsync(video.VideoId.InputStream);
+        }
+       
+       
     }
 }
