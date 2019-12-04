@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using QuatorProjectVIdeoPlayer.Models;
 using System;
 using System.Collections.Generic;
@@ -196,6 +197,47 @@ namespace QuatorProjectVIdeoPlayer.Data
                 {
                     con.Dispose();
                 }
+            }
+        }
+
+        public static bool CheckDarkMode(IHttpContextAccessor _httpAccessor)
+        {
+            int? ID = SessionHelper.WhosLoggedIn(_httpAccessor);
+            if(ID == null)
+            {
+                return false;
+            }
+            Account a = new Account();
+
+            SqlConnection con = DBHelper.GetConnection();
+
+            SqlCommand addCmd = new SqlCommand();
+            addCmd.Connection = con;
+            addCmd.CommandText = "SELECT * " +
+                "FROM Account " +
+                "WHERE AccountId = @id";
+            addCmd.Parameters.AddWithValue("@id", ID);
+
+            con.Open();
+            SqlDataReader reader = addCmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    a.DarkMode = Convert.ToBoolean(reader["DarkMode"]);
+                }
+            }
+
+            reader.Close();
+            con.Dispose();
+
+            if (a.DarkMode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
