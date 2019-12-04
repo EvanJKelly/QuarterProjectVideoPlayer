@@ -90,5 +90,35 @@ namespace QuatorProjectVIdeoPlayer.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        public IActionResult AccountSettings()
+        {
+            if (SessionHelper.IsLoggedIn(_httpAccessor))
+            {
+                return View();
+            }
+            else
+            {
+                TempData["Message"] = "You must be logged in to change settings";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AccountSettings(Account a)
+        {
+            int? memberId = SessionHelper.WhosLoggedIn(_httpAccessor);
+            var darkModeCheckBox = Request.Form["darkModeCheckBox"].ToString();
+            if(darkModeCheckBox == "on")
+            {
+                AccountDb.SwitchDarkMode(true, memberId);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                AccountDb.SwitchDarkMode(false, memberId);
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }

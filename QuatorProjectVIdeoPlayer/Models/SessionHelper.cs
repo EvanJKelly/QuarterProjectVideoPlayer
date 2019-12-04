@@ -31,5 +31,10 @@ namespace QuatorProjectVIdeoPlayer.Models
         {
             context.HttpContext.Session.Clear();
         }
+
+        public static int? WhosLoggedIn(IHttpContextAccessor context)
+        {
+            return context.HttpContext.Session.GetInt32(MemberIdKey);
+        }
     }
 }

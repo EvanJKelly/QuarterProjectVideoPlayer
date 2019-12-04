@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using QuatorProjectVIdeoPlayer.Models;
 using System;
 using System.Collections.Generic;
@@ -126,7 +127,10 @@ namespace QuatorProjectVIdeoPlayer.Data
             {
                 while (reader.Read())
                 {
-                    a.Username = reader["Email"].ToString();
+                    a.AccountId = Convert.ToInt32(reader["AccountId"]);
+                    a.Username = reader["Username"].ToString();
+                    a.DarkMode = Convert.ToBoolean(reader["DarkMode"]);
+                    a.Email = reader["Email"].ToString();
                     a.Password = reader["Password"].ToString();
                 }
             }
@@ -140,6 +144,100 @@ namespace QuatorProjectVIdeoPlayer.Data
             else
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Switches the boolean value of darkmode in the database
+        /// </summary>
+        public static void SwitchDarkMode(bool onOrOff, int? memberId) 
+        {
+            if (onOrOff)
+            {
+                //darkmode on
+                SqlConnection con = DBHelper.GetConnection();
+
+                SqlCommand addCmd = new SqlCommand();
+                addCmd.Connection = con;
+                addCmd.CommandText = "UPDATE Account " +
+                    "SET DarkMode = @value " +
+                    "WHERE AccountId = @id";
+                addCmd.Parameters.AddWithValue("@value", 1);
+                addCmd.Parameters.AddWithValue("@id", memberId);
+
+                try
+                {
+                    con.Open();
+                    addCmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+            }
+            else
+            {
+                //darkmode off
+                SqlConnection con = DBHelper.GetConnection();
+
+                SqlCommand addCmd = new SqlCommand();
+                addCmd.Connection = con;
+                addCmd.CommandText = "UPDATE Account " +
+                    "SET DarkMode = @value " +
+                    "WHERE AccountId = @id";
+                addCmd.Parameters.AddWithValue("@value", 0);
+                addCmd.Parameters.AddWithValue("@id", memberId);
+
+                try
+                {
+                    con.Open();
+                    addCmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+            }
+        }
+
+        public static bool CheckDarkMode(IHttpContextAccessor _httpAccessor)
+        {
+            int? ID = SessionHelper.WhosLoggedIn(_httpAccessor);
+            if(ID == null)
+            {
+                return false;
+            }
+            Account a = new Account();
+
+            SqlConnection con = DBHelper.GetConnection();
+
+            SqlCommand addCmd = new SqlCommand();
+            addCmd.Connection = con;
+            addCmd.CommandText = "SELECT * " +
+                "FROM Account " +
+                "WHERE AccountId = @id";
+            addCmd.Parameters.AddWithValue("@id", ID);
+
+            con.Open();
+            SqlDataReader reader = addCmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    a.DarkMode = Convert.ToBoolean(reader["DarkMode"]);
+                }
+            }
+
+            reader.Close();
+            con.Dispose();
+
+            if (a.DarkMode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

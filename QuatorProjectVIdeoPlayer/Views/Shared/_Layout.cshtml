@@ -1,4 +1,6 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor sessionData
+@using QuatorProjectVIdeoPlayer.Data;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +13,6 @@
     <link href="https://vjs.zencdn.net/7.6.5/video-js.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="~/lib/js/DarkMode.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -24,6 +25,11 @@
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 
     <link rel="stylesheet" href="~/css/site.css" />
+    @if (AccountDb.CheckDarkMode(sessionData))
+    {
+    <link rel="stylesheet" href="~/css/darkMode.css" />
+    }
+    @RenderSection("Head", required: false)
 </head>
 <body>
     <div class="header"></div>
@@ -38,7 +44,7 @@
             <li>Soar </li>
             <li><a asp-controller="Home" asp-action="Account">Account</a></li>
             <li><a asp-controller="Home" asp-action="MyVideos">My Videos</a></li>
-            <li><a asp-controller="Home" asp-action="AccountSettings">Settings</a></li>
+            <li><a asp-controller="Account" asp-action="AccountSettings">Settings</a></li>
 
             </ul>
         </div>
