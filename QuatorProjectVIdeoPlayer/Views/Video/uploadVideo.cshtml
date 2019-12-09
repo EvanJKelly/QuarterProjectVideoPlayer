@@ -11,11 +11,10 @@
 @*<div class="row">
     <div class="col-md-4">
 *@
-<form asp-action="uploadVideo">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <form action="BufferedSingleFileUploadPhysical/?handler=Upload"
+<form action="BufferedSingleFileUploadPhysical/?handler=Upload"
           enctype="multipart/form-data" onsubmit="AJAXSubmit(this);return false;"
           method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <dl>
             <dt>
                 <label for="FileUpload_FormFile">File</label>
@@ -30,17 +29,15 @@
         <div style="margin-top:15px">
             <output name="result"></output>
         </div>
-    </form>
 
     <link href="~/js/VideoViewer.js" rel="stylesheet">
 
 
     <div class="form-group">
-        <dt>
-            <label asp-for="Thumbnail" class="control-label" style="width:350px;"></label>
-        </dt>
         <dl>
-
+            <dt>
+                <label asp-for="Thumbnail" class="control-label" style="width:350px;"></label>
+            </dt>
             <dd>
                 <input id="FileUpload_FormFile" type="file"
                        name="FileUpload.FormFile" />

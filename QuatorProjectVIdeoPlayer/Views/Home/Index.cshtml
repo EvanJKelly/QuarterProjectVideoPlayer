@@ -2,18 +2,16 @@
     ViewData["Title"] = "Home Page";
 }
 
-<body>
-    <div class="text-center">
-        <h1 style="color: deepskyblue" class="display-4">Welcome to our Video Player Site!</h1>
-        <h2 style="color: deepskyblue" > Search a video or two and enjoy!</h2>
-    </div>
-    <a asp-controller="Video" asp-action="VideoViewer">
-        <img src="SampleVideos/shrek.jfif"/>
-    </a>
-    <div style="position:absolute; z-index:-1; margin-left:50px;">
-        <script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
-    </div>
-</body>
+<div class="text-center">
+    <h1 style="color: deepskyblue" class="display-4">Welcome to our Video Player Site!</h1>
+    <h2 style="color: deepskyblue" > Search a video or two and enjoy!</h2>
+</div>
+<a asp-controller="Video" asp-action="VideoViewer">
+    <img src="SampleVideos/shrek.jfif"/>
+</a>
+<div style="position:absolute; z-index:-1; margin-left:50px;">
+    <script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
+</div>
 
 @if (TempData["Message"] != null)
 {
