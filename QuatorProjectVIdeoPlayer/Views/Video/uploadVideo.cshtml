@@ -11,12 +11,9 @@
 @*<div class="row">
     <div class="col-md-4">
 *@
-<form asp-action="uploadVideo">
+<form asp-action="uploadVideo" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <form action="BufferedSingleFileUploadPhysical/?handler=Upload"
-          enctype="multipart/form-data" onsubmit="AJAXSubmit(this);return false;"
-          method="post">
-        <dl>
+        @*<dl>
             <dt>
                 <label for="FileUpload_FormFile">File</label>
             </dt>
@@ -30,17 +27,16 @@
         <div style="margin-top:15px">
             <output name="result"></output>
         </div>
-    </form>
 
     <link href="~/js/VideoViewer.js" rel="stylesheet">
 
 
-    <div class="form-group">
-        <dt>
-            <label asp-for="Thumbnail" class="control-label" style="width:350px;"></label>
-        </dt>
+    
+        
         <dl>
-
+            <dt>
+                <label asp-for="ThumbnailUrl" class="control-label" style="width:350px;"></label>
+            </dt>
             <dd>
                 <input id="FileUpload_FormFile" type="file"
                        name="FileUpload.FormFile" />
@@ -48,30 +44,34 @@
         </dl>
         <dl>
             <dd>
-                <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                <span asp-validation-for="ThumbnailUrl" class="text-danger"></span>
 
             </dd>
         </dl>
     </div>
-    <br />
+    <br />*@
     <div class="form-group" style="width:400px;">
         <label asp-for="VideoTitle" class="control-label"></label>
         <input asp-for="VideoTitle" class="form-control" />
         <span asp-validation-for="VideoTitle" class="text-danger"></span>
     </div>
-    <br />
+    @*This is where video upload will go
+    <div class="form-group">
+        <label asp-for="VideoTitle" class="control-label"></label>
+        <input asp-for="VideoTitle" class="form-control" />
+        <span asp-validation-for="VideoTitle" class="text-danger"></span>
+    </div>*@
+    <div class="form-group">
+        <label asp-for="Thumbnail" class="control-label"></label>
+        <input type="file" name="thumbnail" />
+    </div>
     <div class="form-group">
         <input type="submit" value="Upload" class="btn btn-primary" />
     </div>
-
-
 </form>
-@* </div>
-    </div>
-*@
 
 <div>
-    <a asp-controller="Home" asp-action="MyVideos">Back to My Videos</a>
+    <a asp-controller="Account" asp-action="MyVideos">Back to My Videos</a>
 </div>
 
 @section Scripts {

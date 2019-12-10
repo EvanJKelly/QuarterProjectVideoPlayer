@@ -91,6 +91,20 @@ namespace QuatorProjectVIdeoPlayer.Controllers
         }
 
         [HttpGet]
+        public IActionResult MyVideos()
+        {
+            if (SessionHelper.IsLoggedIn(_httpAccessor))
+            {
+                return View();
+            }
+            else
+            {
+                TempData["Message"] = "You must be logged in to view your videos";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
         public IActionResult AccountSettings()
         {
             if (SessionHelper.IsLoggedIn(_httpAccessor))
