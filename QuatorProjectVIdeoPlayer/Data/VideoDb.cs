@@ -18,6 +18,30 @@ namespace QuatorProjectVIdeoPlayer.Data
 {
     public class VideoDb
     {
+        public static void addVideo(Video video)
+        {
+            SqlConnection con = DBHelper.GetConnection();
+
+            SqlCommand addCmd = new SqlCommand();
+            addCmd.Connection = con;
+            addCmd.CommandText = "INSERT INTO Video(VideoTitle, VideoLink, Thumbnail, AccountId) " +
+                "VALUES (@title, @videolink, @thumbnail, @accountid)";
+            addCmd.Parameters.AddWithValue("@title", video.VideoTitle);
+            addCmd.Parameters.AddWithValue("@videolink", "a"); // TODO: implement video file upload ***************IMPORTANT***********************
+            addCmd.Parameters.AddWithValue("@thumbnail", video.ThumbnailUrl);
+            addCmd.Parameters.AddWithValue("@accountid", video.AccountId);
+
+            try
+            {
+                con.Open();
+                addCmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                con.Dispose();
+            }
+        }
+
         public static string getThumbnail(int id)
         {
             string thumbnail = string.Empty;
