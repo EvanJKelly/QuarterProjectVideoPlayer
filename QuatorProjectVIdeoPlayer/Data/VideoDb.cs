@@ -27,7 +27,7 @@ namespace QuatorProjectVIdeoPlayer.Data
             addCmd.CommandText = "INSERT INTO Video(VideoTitle, VideoLink, Thumbnail, AccountId) " +
                 "VALUES (@title, @videolink, @thumbnail, @accountid)";
             addCmd.Parameters.AddWithValue("@title", video.VideoTitle);
-            addCmd.Parameters.AddWithValue("@videolink", "a"); // TODO: implement video file upload ***************IMPORTANT***********************
+            addCmd.Parameters.AddWithValue("@videolink", video.VideoLink);
             addCmd.Parameters.AddWithValue("@thumbnail", video.ThumbnailUrl);
             addCmd.Parameters.AddWithValue("@accountid", video.AccountId);
 
