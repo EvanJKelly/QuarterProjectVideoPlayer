@@ -65,7 +65,7 @@ namespace QuatorProjectVIdeoPlayer.Controllers
                     {
                         string filePath = Path.Combine(_env.WebRootPath, "images", newFileName + extension);
 
-                        video.ThumbnailUrl = "images/" + newFileName + extension;
+                        video.ThumbnailUrl = filePath;
 
                         VideoDb.addVideo(video);
 
