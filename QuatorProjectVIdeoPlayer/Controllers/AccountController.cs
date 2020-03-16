@@ -19,6 +19,20 @@ namespace QuatorProjectVIdeoPlayer.Controllers
         }
 
         [HttpGet]
+        public IActionResult Account()
+        {
+            if (SessionHelper.IsLoggedIn(_httpAccessor))
+            {
+                return View();
+            }
+            else
+            {
+                TempData["Message"] = "You must be logged in to view your account info";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
