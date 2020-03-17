@@ -23,10 +23,10 @@ CREATE TABLE  Account
 
 CREATE Table Video(
 	VideoId int PRIMARY KEY IDENTITY NOT NULL,
-	VideoLink varchar(60) NOT NULL,
+	VideoLink varchar(500) NOT NULL,
 	VideoTitle varchar(30) NOT NULL,
 	Rating bit NULL,
-	Thumbnail varchar(100) NULL,
+	Thumbnail varchar(500) NULL,
 	Comments varchar(500) NULL,
 	AccountId int REFERENCES Account(AccountId) NOT NULL
     
