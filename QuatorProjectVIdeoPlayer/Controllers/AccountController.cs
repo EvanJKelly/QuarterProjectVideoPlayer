@@ -46,7 +46,7 @@ namespace QuatorProjectVIdeoPlayer.Controllers
                 {
                     return View(a);
                 }
-
+                
                 AccountDb.Add(a);
                 SessionHelper.LogUserIn(_httpAccessor, a.AccountId, a.Username);
                 TempData["Message"] = "You registered sucessfully";
