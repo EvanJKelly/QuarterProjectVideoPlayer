@@ -95,7 +95,11 @@ namespace QuatorProjectVIdeoPlayer.Controllers
         {
             if (SessionHelper.IsLoggedIn(_httpAccessor))
             {
-                return View();
+                int? memberId = SessionHelper.WhosLoggedIn(_httpAccessor);
+
+                List<Video> userVideos = AccountDb.getUserVideos(memberId);
+
+                return View(userVideos);
             }
             else
             {
