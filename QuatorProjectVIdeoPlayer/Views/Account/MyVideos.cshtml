@@ -21,13 +21,18 @@
 
 <h1>My Videos</h1>
 
-<a asp-controller="Video" asp-action="uploadVideo"><button class="btn btn-primary" id="upload">Upload</button></asp-controller="Video"> </a>
+<a asp-controller="Video" asp-action="uploadVideo" button class="btn btn-primary" id="upload">Upload</a>
 
 @foreach (var i in Model)
 {
+    <p>@i.VideoTitle</p>
     <a asp-controller="Video" asp-action="VideoViewer">
         <img src="/@i.ThumbnailUrl" />
     </a>
 }
 
-<p class="temporary">Your videos will go here</p>
+@if (!Model.Any())
+{
+    <p class="temporary">Your videos will go here</p>
+}
+
