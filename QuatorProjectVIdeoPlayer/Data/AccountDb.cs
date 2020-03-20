@@ -240,5 +240,15 @@ namespace QuatorProjectVIdeoPlayer.Data
                 return false;
             }
         }
+
+        public static Account GetAccount(IHttpContextAccessor _httpAccessor)
+        {
+            SqlConnection con = DBHelper.GetConnection();
+
+            SqlCommand addCmd = new SqlCommand();
+            addCmd.Connection = con;
+
+
+        }
     }
 }
