@@ -241,6 +241,40 @@ namespace QuatorProjectVIdeoPlayer.Data
             }
         }
 
+        public static List<Video> getUserVideos(int? memberId)
+        {
+            List<Video> userVideos = new List<Video>();
+
+            SqlConnection con = DBHelper.GetConnection();
+
+            SqlCommand addCmd = new SqlCommand();
+            addCmd.Connection = con;
+            addCmd.CommandText = "SELECT * " +
+                "FROM Video " +
+                "WHERE AccountId = @id";
+            addCmd.Parameters.AddWithValue("@id", memberId);
+
+            con.Open();
+            SqlDataReader reader = addCmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    Video temp = new Video();
+                    temp.VideoId = Convert.ToInt32(reader["VideoId"]);
+                    temp.VideoLink = Convert.ToString(reader["VideoLink"]);
+                    temp.VideoTitle = Convert.ToString(reader["VideoTitle"]);
+                    temp.ThumbnailUrl = Convert.ToString(reader["Thumbnail"]);
+
+                    userVideos.Add(temp);
+                }
+            }
+            reader.Close();
+            con.Dispose();
+
+            return userVideos;
+        }
+
         public static Account GetAccount(IHttpContextAccessor _httpAccessor)
         {
             SqlConnection con = DBHelper.GetConnection();

@@ -1,27 +1,38 @@
-﻿@{
+﻿@model IEnumerable<Video>
+
+@{
     ViewData["Title"] = "Account Page";
 }
 <style>
-    h1{
+    h1 {
         margin-left: 41.5%;
         float: left;
     }
 
-    #upload{
+    #upload {
         margin-left: 34.5%;
     }
 
-    .temporary{
-        text-align:center;
+    .temporary {
+        text-align: center;
         margin-top: 25px;
     }
 </style>
-  
-<body>
 
-    <h1>My Videos</h1>
-    
-    <a asp-controller="Video" asp-action="uploadVideo"><button class="btn btn-primary" id="upload" >Upload</button></aasp-controller="Video"> </a>
+<h1>My Videos</h1>
 
+<a asp-controller="Video" asp-action="uploadVideo" button class="btn btn-primary" id="upload">Upload</a>
+
+@foreach (var i in Model)
+{
+    <p>@i.VideoTitle</p>
+    <a asp-controller="Video" asp-action="VideoViewer">
+        <img src="/@i.ThumbnailUrl" />
+    </a>
+}
+
+@if (!Model.Any())
+{
     <p class="temporary">Your videos will go here</p>
-</body>
+}
+

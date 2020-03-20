@@ -12,7 +12,7 @@ namespace QuatorProjectVIdeoPlayer.Models
     {
         public int VideoId { get; set; }
 
-        public string VideoType {get; set;}
+        public string VideoLink {get; set;}
 
         public string VideoTitle { get; set; }
 

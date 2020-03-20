@@ -60,7 +60,7 @@ namespace QuatorProjectVIdeoPlayer.Controllers
                 {
                     return View(a);
                 }
-
+                
                 AccountDb.Add(a);
                 SessionHelper.LogUserIn(_httpAccessor, a.AccountId, a.Username);
                 TempData["Message"] = "You registered sucessfully";
@@ -109,7 +109,11 @@ namespace QuatorProjectVIdeoPlayer.Controllers
         {
             if (SessionHelper.IsLoggedIn(_httpAccessor))
             {
-                return View();
+                int? memberId = SessionHelper.WhosLoggedIn(_httpAccessor);
+
+                List<Video> userVideos = AccountDb.getUserVideos(memberId);
+
+                return View(userVideos);
             }
             else
             {
